@@ -1,3 +1,0 @@
-[submodule "src/frontend/keyboard/Tone.js"]
-	path = src/frontend/keyboard/Tone.js
-	url = https://github.com/Tonejs/Tone.js
