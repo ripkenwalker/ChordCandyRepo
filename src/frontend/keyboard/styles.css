@@ -12,6 +12,10 @@ body {
     display:flex;
 }
 
+tone-piano {
+    margin-bottom: 10px;
+}
+
 .key{
     height: calc(var(--width) * 4);
     width: var(--width);
