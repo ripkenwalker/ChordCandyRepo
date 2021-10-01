@@ -7,8 +7,8 @@ print("-")
 chordDict = {'C': 
                 {'C Major': {
                     606467: 'C Major Root Position', 
-                    676064: 'C Major 1st Inversion', 
-                    646760: 'C Major 2nd Inversion'},
+                    646772: 'C Major 1st Inversion', 
+                    677276: 'C Major 2nd Inversion'},
                 
                 'C Minor': {
                     606367: 'C Minor Root Postition',
