@@ -45,7 +45,9 @@ const keys = document.querySelectorAll('.key')
 const whiteKeys = document.querySelectorAll('.key.white')
 const blackKeys = document.querySelectorAll('.key.black')
 
-function trackMouse() {
+function trackMouse(e) {
+    //var rect = e.target.getBoundingClientRect()
+    //console.log(rect)
 }
 
 // What happens when a key on the keyboard is clicked
