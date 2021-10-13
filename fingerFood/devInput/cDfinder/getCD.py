@@ -1,22 +1,10 @@
 #imports
-import git
 import os
+import json
 
 
-###Initiate ChordDict File Adding Program###
 
-#Get Path
-def getPath():
-    repo = git.Repo('.', search_parent_directories=True)
-    currentPath = repo.working_tree_dir
-    return currentPath
-
-
-#Create Repo Object
-def repoObj():
-    repository = git.Repo(getPath())
-    return repository
-
+###Get the Chord Dictionary into a single dictionary object###
 
 #Check if Dict exists
 def doesDictExist(pathtoDict):
@@ -29,28 +17,30 @@ def doesDictExist(pathtoDict):
 #Get chordDict path and enter directory
 def getchordDictdir():
     for n in range(2):
-        if n < 3:
+        if n < 2:
             pathN = os.getcwd()
             pNParent = os.path.dirname(pathN)
             os.chdir(pNParent)
             n = n + 1
     pathO = os.getcwd()
-    pathF = pathO + "\chordBank"
+    pathF = pathO + "/fingerFood/chordBank"
     os.chdir(pathF)
-    dirPath = pathF + '\chordDict.txt'
+    dirPath = pathF + '/chordDict.txt'
     if doesDictExist(dirPath):
         return os.getcwd() + '\chordDict.txt'
     else:
         open('chordDict.txt','x')
         return os.getcwd() + '\chordDict.txt'
 
-chordDictdir = getchordDictdir()
-def appendToChordDict(istring):
-    f = open(chordDictdir,'a')
-    f.write(istring)
-    f.close()
-    g = open(chordDictdir,'r')
-    return g.read()
+#get the whole dictionary in one variable
 
+def getDict(dir):
+    with open(dir) as c:
+        cDat = c.read()
+    cD = json.loads(cDat)
+    return cD
 
-print(os.getcwd())
+def getCD():
+    cD = getDict(getchordDictdir())
+    return cD
+
