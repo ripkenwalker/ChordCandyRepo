@@ -40,6 +40,7 @@ const sampler = new Tone.Sampler({
 const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
 const BLACK_KEYS = ['s', 'd', 'g', 'h', 'j']
 
+
 // Get all key elements in the HTML
 const keys = document.querySelectorAll('.key')
 const whiteKeys = document.querySelectorAll('.key.white')
@@ -97,6 +98,12 @@ function playNote(key) {
     sampler.triggerAttack(key.dataset.note);
 }
 
+function dropdownPlayNote(key_Index) {
+    const key = keys[key_Index]
+    key.classList.add('active')
+    sampler.triggerAttack(key.dataset.note)
+}
+
 // Release the note audio
 function releaseNote(key) {
     const piano = document.querySelector('.piano')
@@ -104,3 +111,9 @@ function releaseNote(key) {
     key.classList.remove('active');
     sampler.triggerRelease(key.dataset.note);
 }
+
+function dropdownReleaseNote(key_Index) {
+    const key = keys[key_Index]
+    key.classList.remove('active');
+}
+

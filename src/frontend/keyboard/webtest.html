@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dropdown_style.css">
     <script src="script.js" defer></script>
+    <script src="dropdown_script.js" defer></script>
 
     <!-- Scripts from Tone.js sampler example (for the piano UI)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/webcomponents-bundle.js"></script>
@@ -27,6 +29,22 @@
         <div data-note="A4" class="white key"></div>
         <div data-note="Bb4" class="black key"></div>
         <div data-note="B4" class="white key"></div>
+    </div>
+    
+    <!-------------------- Dropdown Menu ------------------------------->
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Choose Chords</button>
+        <div id="myDropdown" class="dropdown-content">
+            <!--Search function to filter the chords-->
+          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <a id='CM' class='chord'>C Major</a>
+          <a id='DM' class='chord'>D Major</a>
+          <a id='EM' class='chord'>E Major</a>
+          <a id='FM' class='chord'>F Major</a>
+          <a id='GM' class='chord'>G Major</a>
+          <a id='AM' class='chord'>A Major</a>
+          <a id='BM' class='chord'>B Major</a>
+        </div>
     </div>
 </body>
 </html>
