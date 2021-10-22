@@ -115,5 +115,6 @@ function releaseNote(key) {
 function dropdownReleaseNote(key_Index) {
     const key = keys[key_Index]
     key.classList.remove('active');
+    sampler.triggerRelease(key.dataset.note);
 }
 

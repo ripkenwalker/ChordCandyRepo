@@ -25,12 +25,17 @@ const allKey = document.querySelectorAll('.key');
 const allChords = document.querySelectorAll('.chord');
 const CMaj = document.querySelector('#CM');
 const DMaj = document.querySelector('#DM');
+const EMaj = document.querySelector('#EM');
+const FMaj = document.querySelector('#FM');
+const GMaj = document.querySelector('#GM');
+const AMaj = document.querySelector('#AM');
+const BMaj = document.querySelector('#BM');
 // ... ... //
 
 console.log(allChords)
 
-const chordsIndex = [[0, 4, 7],[2, 6, 9],[4, 8, 11],[6, 10, 1]]
-console.log(chordsIndex[0])
+// const chordsIndex = [[0, 4, 7],[2, 6, 9],[4, 8, 11],[6, 10, 1]]
+// console.log(chordsIndex[0])
 
 // for (i = 0; i < allChords.length; i++) {
 //   allChords[i].addEventListener('click', e => {
@@ -59,6 +64,52 @@ CMaj.addEventListener('click', e => {
     }
   }
 })
+DMaj.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    const notes = [2, 6, 9]
+    for (let i = 0; i < notes.length; i++) {
+      dropdownPlayNote(notes[i])
+    }
+  }
+})
+EMaj.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    const notes = [4, 8, 11]
+    for (let i = 0; i < notes.length; i++) {
+      dropdownPlayNote(notes[i])
+    }
+  }
+})
+FMaj.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    const notes = [5, 9, 12]
+    for (let i = 0; i < notes.length; i++) {
+      dropdownPlayNote(notes[i])
+    }
+  }
+})
+
 
 // CMaj.addEventListener('mouseup', e => {
 //   const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
