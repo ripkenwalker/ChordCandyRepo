@@ -97,13 +97,58 @@ EMaj.addEventListener('click', e => {
 FMaj.addEventListener('click', e => {
   check = !check
   if (check){
-    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
     for (let i = 0; i < allnotes.length; i++) {
       dropdownReleaseNote(allnotes[i])
     }
   }
   else {
     const notes = [5, 9, 12]
+    for (let i = 0; i < notes.length; i++) {
+      dropdownPlayNote(notes[i])
+    }
+  }
+})
+GMaj.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    const notes = [7, 11, 14]
+    for (let i = 0; i < notes.length; i++) {
+      dropdownPlayNote(notes[i])
+    }
+  }
+})
+AMaj.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    const notes = [9, 13, 16]
+    for (let i = 0; i < notes.length; i++) {
+      dropdownPlayNote(notes[i])
+    }
+  }
+})
+BMaj.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    const notes = [11, 15, 18]
     for (let i = 0; i < notes.length; i++) {
       dropdownPlayNote(notes[i])
     }
