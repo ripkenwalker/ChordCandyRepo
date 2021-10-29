@@ -11,27 +11,11 @@ from wtforms import Form, BooleanField, TextField, PasswordField, validators,Rad
 import gc
 import requests
 import sys,traceback
-
-
-midipitches = ['C','C#','D','Eb','E','F','F#','G','G#','A','Bb','B']
- 
+dev_mode = 'FALSE'
 
 app = Flask(__name__)
-app.config['SESSION_TYPE'] = 'memcached'
-app.config['SECRET_KEY'] = 'pretty secret key'
-UPLOAD_FOLDER = './static/audio_uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-dev_mode = 'FALSE'
-#print("fn ",Flask(__name__))
+# @app.route('/<path:filename>')
 
-@app.route('/next_chord')
-def next_chord():
-    print("got in")
-    current_chord = request.args.get('current_chord')
-    next_chord = request.args.get('next_chord')
-    next_chord_voicing = ["F3","A3","C4"]
-
-    return jsonify(next_chord_voicing)
 @app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = app.root_path
@@ -39,14 +23,11 @@ def serve_static(filename):
     print(os.path.join(root_dir, 'static\\'), filename)
     return send_from_directory(os.path.join(root_dir, 'static\\'), filename)
 
+
+
+
 if __name__ == '__main__':
-    #app = Flask(__name__)
-    # sess = Session()
     if dev_mode == 'TRUE':
         app.run(host='0.0.0.0',port=8000,debug=True)
     else:
         app.run(port=8000,debug=False)
-        
-   
-
-            
