@@ -12,15 +12,11 @@ for i in range(len(userInput)-1):
     temp = getBestInversion(destinationChords[i][1], userInput[i+1])
     destinationChords.append(temp)
 
-
-# TODO - Change to JSON output instead of current list implementation
-
-#with open('algOutput.json', 'w') as outWrite:
-#    json.dump(fullOut, outWrite)
-print(destinationChords)
-print()
-for i in range(len(userInput)):
-    print(destinationChords[i][3])
-
+# Output destination chords to JSON file
 with open('Backend Functions\ccOutput.json', 'w') as outputWrite:
     json.dump(destinationChords, outputWrite)
+
+#print(destinationChords)
+#print()
+#for i in range(len(userInput)):
+#    print(destinationChords[i][3])
