@@ -1,8 +1,9 @@
 from getBestInversion import getBestInversion
 from firstChordInfo import firstChordInfo
+import json
 
 # Can input as many chords as you want
-userInput = ['C Major Root Position', 'G Major', 'A Minor', 'F Major']
+userInput = ['C#/Db Major Root Position', 'G Major', 'A Minor', 'F Major']
 destinationChords = [firstChordInfo(userInput[0])]
 
 # Populates destinationChords list with results
@@ -20,3 +21,6 @@ print(destinationChords)
 print()
 for i in range(len(userInput)):
     print(destinationChords[i][3])
+
+with open('Backend Functions\ccOutput.json', 'w') as outputWrite:
+    json.dump(destinationChords, outputWrite)

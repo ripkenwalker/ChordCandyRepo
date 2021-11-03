@@ -5,7 +5,7 @@ import json
 from chordIntSplit import chordIntSplit
 from chordIntCombine import chordIntCombine
 
-with open('chordDictionary.json', 'r') as dictOpen:
+with open('Backend Functions\chordDictionary.json', 'r') as dictOpen:
     nameToNum = json.load(dictOpen)
 
 def getBestInversion(inChord, destChord):
