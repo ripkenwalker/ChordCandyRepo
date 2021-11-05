@@ -20,7 +20,7 @@ tone-piano {
 }
 
 .white{
-    --width: 60px;
+    --width: 64.8px;
     background-color: white;
     border: 1px solid rgb(122, 122, 122);
 }
@@ -29,7 +29,7 @@ tone-piano {
 }
 
 .black{
-    --width: 36px;
+    --width: 38.88px;
     background-color: black;
     border: 1.8px solid black;
     margin-left: calc(var(--width) / -2);
