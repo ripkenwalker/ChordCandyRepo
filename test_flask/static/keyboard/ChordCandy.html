@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dropdown_style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="script.js" defer></script>
     <script src="dropdown_script.js" defer></script>
 
@@ -16,46 +18,50 @@
     <title>Piano</title>
 </head>
 <body>
-    <!-------------------- Piano Keys -------------------->
-    <div class="piano">
-        <div data-note="C3" class="white key"></div>
-        <div data-note="Db3" class="black key"></div>
-        <div data-note="D3" class="white key"></div>
-        <div data-note="Eb3" class="black key"></div>
-        <div data-note="E3" class="white key"></div>
-        <div data-note="F3" class="white key"></div>
-        <div data-note="Gb3" class="black key"></div>
-        <div data-note="G3" class="white key"></div>
-        <div data-note="Ab3" class="black key"></div>
-        <div data-note="A3" class="white key"></div>
-        <div data-note="Bb3" class="black key"></div>
-        <div data-note="B3" class="white key"></div>
+    <div class="container"></div>
+    <!-------------------- Piano Container -------------------->
+    <div class="container-fluid">
+        <!-------------------- Piano Keys -------------------->
+        <div class="piano">
+            <div data-note="C3" class="white key"></div>
+            <div data-note="Db3" class="black key"></div>
+            <div data-note="D3" class="white key"></div>
+            <div data-note="Eb3" class="black key"></div>
+            <div data-note="E3" class="white key"></div>
+            <div data-note="F3" class="white key"></div>
+            <div data-note="Gb3" class="black key"></div>
+            <div data-note="G3" class="white key"></div>
+            <div data-note="Ab3" class="black key"></div>
+            <div data-note="A3" class="white key"></div>
+            <div data-note="Bb3" class="black key"></div>
+            <div data-note="B3" class="white key"></div>
 
-        <div data-note="C4" class="white key"></div>
-        <div data-note="Db4" class="black key"></div>
-        <div data-note="D4" class="white key"></div>
-        <div data-note="Eb4" class="black key"></div>
-        <div data-note="E4" class="white key"></div>
-        <div data-note="F4" class="white key"></div>
-        <div data-note="Gb4" class="black key"></div>
-        <div data-note="G4" class="white key"></div>
-        <div data-note="Ab4" class="black key"></div>
-        <div data-note="A4" class="white key"></div>
-        <div data-note="Bb4" class="black key"></div>
-        <div data-note="B4" class="white key"></div>
+            <div data-note="C4" class="white key"></div>
+            <div data-note="Db4" class="black key"></div>
+            <div data-note="D4" class="white key"></div>
+            <div data-note="Eb4" class="black key"></div>
+            <div data-note="E4" class="white key"></div>
+            <div data-note="F4" class="white key"></div>
+            <div data-note="Gb4" class="black key"></div>
+            <div data-note="G4" class="white key"></div>
+            <div data-note="Ab4" class="black key"></div>
+            <div data-note="A4" class="white key"></div>
+            <div data-note="Bb4" class="black key"></div>
+            <div data-note="B4" class="white key"></div>
 
-        <div data-note="C5" class="white key"></div>
-        <div data-note="Db5" class="black key"></div>
-        <div data-note="D5" class="white key"></div>
-        <div data-note="Eb5" class="black key"></div>
-        <div data-note="E5" class="white key"></div>
-        <div data-note="F5" class="white key"></div>
-        <div data-note="Gb5" class="black key"></div>
-        <div data-note="G5" class="white key"></div>
-        <div data-note="Ab5" class="black key"></div>
-        <div data-note="A5" class="white key"></div>
-        <div data-note="Bb5" class="black key"></div>
-        <div data-note="B5" class="white key"></div>
+            <div data-note="C5" class="white key"></div>
+            <div data-note="Db5" class="black key"></div>
+            <div data-note="D5" class="white key"></div>
+            <div data-note="Eb5" class="black key"></div>
+            <div data-note="E5" class="white key"></div>
+            <div data-note="F5" class="white key"></div>
+            <div data-note="Gb5" class="black key"></div>
+            <div data-note="G5" class="white key"></div>
+            <div data-note="Ab5" class="black key"></div>
+            <div data-note="A5" class="white key"></div>
+            <div data-note="Bb5" class="black key"></div>
+            <div data-note="B5" class="white key"></div>
+        </div>
     </div>
     
     <!-------------------- Dropdown Menu -------------------->
@@ -73,5 +79,8 @@
           <a id='BM' class='chord'>B Major</a>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
