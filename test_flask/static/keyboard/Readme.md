@@ -13,4 +13,7 @@ $ npm install
 ...
 $ npm run build
 ```
+### npm not found
+
+If npm isn't recognized as a command, install NodeJs here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
