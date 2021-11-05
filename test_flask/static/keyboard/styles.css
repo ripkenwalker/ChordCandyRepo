@@ -23,6 +23,7 @@ tone-piano {
     --width: 67px;
     background-color: white;
     border: 1px solid rgb(122, 122, 122);
+    box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
 }
 .white.active{
     background-color: rgb(255, 100, 100);
@@ -44,20 +45,19 @@ tone-piano {
     box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
     height: 55vh;
 }
-
 .dropdown-menu li {
     position: relative;
   }
-  .dropdown-menu .dropdown-submenu {
+.dropdown-menu .dropdown-submenu {
     display: none;
     position: absolute;
     left: 100%;
     top: -7px;
-  }
-  .dropdown-menu .dropdown-submenu-left {
+}
+.dropdown-menu .dropdown-submenu-left {
     right: 100%;
     left: auto;
-  }
-  .dropdown-menu > li:hover > .dropdown-submenu {
+}
+.dropdown-menu > li:hover > .dropdown-submenu {
     display: block;
-  }
+}
