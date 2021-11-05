@@ -11,6 +11,7 @@ from wtforms import Form, BooleanField, TextField, PasswordField, validators,Rad
 import gc
 import requests
 import sys,traceback
+from Backend_Functions.mainCallMultiple import mainCallMultiple
 
 
 midipitches = ['C','C#','D','Eb','E','F','F#','G','G#','A','Bb','B']
@@ -24,14 +25,22 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 dev_mode = 'FALSE'
 #print("fn ",Flask(__name__))
 
-@app.route('/next_chord')
-def next_chord():
+@app.route('/chordsend')
+def chordsend():
     print("got in")
-    current_chord = request.args.get('current_chord')
-    next_chord = request.args.get('next_chord')
-    next_chord_voicing = ["F3","A3","C4"]
+    chordIn1 = request.args.get('chord1')
+    chordIn2 = request.args.get('chord2')
+    chordIn3 = request.args.get('chord3')
+    chordIn4 = request.args.get('chord4')
+    
+    inputChord = [str(chordIn1), str(chordIn2), str(chordIn3), str(chordIn4)]
+    print(inputChord)
 
-    return jsonify(next_chord_voicing)
+    destChords = mainCallMultiple(inputChord)
+
+    return jsonify(destChords)
+
+
 @app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = app.root_path

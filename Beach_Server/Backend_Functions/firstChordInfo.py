@@ -4,10 +4,10 @@ from nested_lookup import nested_lookup
 import numpy as np
 import json
 from music21 import *
-from chordIntSplit import chordIntSplit
-from chordIntCombine import chordIntCombine
+from Backend_Functions.chordIntSplit import chordIntSplit
+from Backend_Functions.chordIntCombine import chordIntCombine
 
-with open('Backend Functions\chordDictionary.json', 'r') as dictOpen:
+with open('Beach_Server\Backend_Functions\chordDictionary.json', 'r') as dictOpen:
     nameToNum = json.load(dictOpen)
 
 def firstChordInfo(inputChord):

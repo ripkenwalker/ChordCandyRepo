@@ -1,5 +1,5 @@
-from getBestInversion import getBestInversion
-from firstChordInfo import firstChordInfo
+from Backend_Functions.getBestInversion import getBestInversion
+from Backend_Functions.firstChordInfo import firstChordInfo
 import json
 
 def mainCallMultiple(userInput):
@@ -8,12 +8,12 @@ def mainCallMultiple(userInput):
     destinationChords = [firstChordInfo(userInput[0])]
 
     nullCount = userInput.count('NULL')
-    destLength = len(userInput)-nullCount+1
+    destLength = len(userInput)-nullCount-1
     # Populates destinationChords list with results
     for i in range(destLength):
         userInput[i] = userInput[i].replace("b", "-")
         
-        if userInput[i+1] == 'NULL':
+        if userInput[i] == 'NULL':
             temp = 'NULL'
         else:
             temp = getBestInversion(destinationChords[i][1], userInput[i+1])
@@ -21,8 +21,8 @@ def mainCallMultiple(userInput):
         destinationChords.append(temp)
 
     # Output destination chords to JSON file
-    with open('Backend Functions\ccOutput.json', 'w') as outputWrite:
-        json.dump(destinationChords, outputWrite)
+    #with open('Beach_Server\Backend_Functions\ccOutput.json', 'w') as outputWrite:
+    #    json.dump(destinationChords, outputWrite)
 
     return(destinationChords)
 #print(destinationChords)

@@ -9,7 +9,7 @@ import subprocess
 # from functools import wraps
 from wtforms import Form, BooleanField, TextField, PasswordField, validators,RadioField
 import gc
-import requests
+#import requests
 import sys,traceback
 dev_mode = 'FALSE'
 
