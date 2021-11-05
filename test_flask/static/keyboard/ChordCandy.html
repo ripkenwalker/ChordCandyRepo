@@ -19,10 +19,27 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-            
+        <div class="row justify-content-center no-gutters">
+            <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
         </div>
-        <div class="row">
+        <div class="row no-gutters justify-content-center">
             <!-------------------- Piano Keys -------------------->
             <div class="piano">
                 <div data-note="C3" class="white key"></div>
@@ -65,21 +82,22 @@
                 <div data-note="B5" class="white key"></div>
             </div>
         </div>
-    </div>
-    
-    <!-------------------- Dropdown Menu -------------------->
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Choose Chords</button>
-        <div id="myDropdown" class="dropdown-content">
-            <!--Search function to filter the chords-->
-          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-          <a id='CM' class='chord'>C Major</a>
-          <a id='DM' class='chord'>D Major</a>
-          <a id='EM' class='chord'>E Major</a>
-          <a id='FM' class='chord'>F Major</a>
-          <a id='GM' class='chord'>G Major</a>
-          <a id='AM' class='chord'>A Major</a>
-          <a id='BM' class='chord'>B Major</a>
+        <div class="row no-gutters justify-content-center">
+            <!-------------------- Dropdown Menu -------------------->
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Choose Chords</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <!--Search function to filter the chords-->
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a id='CM' class='chord'>C Major</a>
+                <a id='DM' class='chord'>D Major</a>
+                <a id='EM' class='chord'>E Major</a>
+                <a id='FM' class='chord'>F Major</a>
+                <a id='GM' class='chord'>G Major</a>
+                <a id='AM' class='chord'>A Major</a>
+                <a id='BM' class='chord'>B Major</a>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

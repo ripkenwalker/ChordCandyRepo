@@ -4,11 +4,9 @@
 
 body {
     background-color: white;
-    margin: 30px;
-    display: flex;
 }
 
-.piano{
+.piano {
     display:flex;
 }
 
@@ -22,18 +20,18 @@ tone-piano {
 }
 
 .white{
-    --width: 100px;
+    --width: 60px;
     background-color: white;
-    border: 5px solid rgb(122, 122, 122);
+    border: 1px solid rgb(122, 122, 122);
 }
 .white.active{
     background-color: rgb(255, 100, 100);
 }
 
 .black{
-    --width: 60px;
+    --width: 36px;
     background-color: black;
-    border: 3px solid black;
+    border: 1.8px solid black;
     margin-left: calc(var(--width) / -2);
     margin-right: calc(var(--width) / -2);
     z-index: 2;
