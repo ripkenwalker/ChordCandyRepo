@@ -8,6 +8,7 @@ body {
 
 .piano {
     display:flex;
+    box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
 }
 
 tone-piano {
@@ -20,7 +21,7 @@ tone-piano {
 }
 
 .white{
-    --width: 64.8px;
+    --width: 67px;
     background-color: white;
     border: 1px solid rgb(122, 122, 122);
 }
@@ -29,7 +30,7 @@ tone-piano {
 }
 
 .black{
-    --width: 38.88px;
+    --width: 40.2px;
     background-color: black;
     border: 1.8px solid black;
     margin-left: calc(var(--width) / -2);
@@ -38,4 +39,8 @@ tone-piano {
 }
 .black.active{
     background-color: rgb(255, 100, 100);
+}
+
+.card {
+    box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
 }
