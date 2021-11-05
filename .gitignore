@@ -1,2 +1,4 @@
 # macOS Junk Files
 **/.DS_Store
+# node build files
+node_modules
