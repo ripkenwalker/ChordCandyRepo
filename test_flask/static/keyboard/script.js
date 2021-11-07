@@ -10,6 +10,8 @@ function handle_response(e) {
     var data = Object.keys(actual_JSON);
     var data2 = Object.values(actual_JSON);
     var data3 = Object.keys(data2[0])
+    var data4 = Object.values(data2[0])
+    var data5 = Object.keys(data4[0])
     var i = 0;
     const buttonGroups = document.getElementsByClassName("chord-names")
     while (i < buttonGroups.length) {
@@ -48,6 +50,28 @@ function handle_response(e) {
             buttonLabel.innerText = quality
             buttonGroup.appendChild(buttonInput)
             buttonGroup.appendChild(buttonLabel)
+        }
+        if (i < 1) {
+            for (i4 = 0; i4 < data5.length; i4++) {
+                var text = data5[i4]
+                const myArray = text.split(" ")
+    
+                const buttonGroup = buttonGroups[i].children[2]
+                var inversion = myArray[2] + " " + myArray[3]
+                const buttonInput = document.createElement("input")
+                buttonInput.type = "radio"
+                buttonInput.className = "btn-check"
+                buttonInput.name = "btnradio" + "-i" + String(i)
+                const id = "btnradio" + String(i) + "-i" + String(i4)
+                buttonInput.id = id
+                buttonInput.autocomplete = "off"
+                const buttonLabel = document.createElement("label")
+                buttonLabel.className = "btn btn-outline-primary"
+                buttonLabel.htmlFor = id
+                buttonLabel.innerText = inversion
+                buttonGroup.appendChild(buttonInput)
+                buttonGroup.appendChild(buttonLabel)
+            }
         }
         i++;
     }
