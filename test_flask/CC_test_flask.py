@@ -16,6 +16,13 @@ dev_mode = 'FALSE'
 app = Flask(__name__)
 # @app.route('/<path:filename>')
 
+@app.route('/chordDict')
+def getChordDict():
+    f = open('Backend_Functions/chordDictionary.json')
+    data = json.load(f)
+    f.close()
+    return data
+
 @app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = app.root_path
