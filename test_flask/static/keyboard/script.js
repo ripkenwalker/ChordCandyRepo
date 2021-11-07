@@ -8,6 +8,8 @@ var send_request = function() {
 function handle_response(e) {
     var actual_JSON = JSON.parse(this.response);
     var data = Object.keys(actual_JSON);
+    var data2 = Object.values(actual_JSON);
+    var data3 = Object.keys(data2[0])
     var i = 0;
     const buttonGroups = document.getElementsByClassName("chord-names")
     while (i < buttonGroups.length) {
@@ -24,6 +26,26 @@ function handle_response(e) {
             buttonLabel.className = "btn btn-outline-primary"
             buttonLabel.htmlFor = id
             buttonLabel.innerText = data[i2]
+            buttonGroup.appendChild(buttonInput)
+            buttonGroup.appendChild(buttonLabel)
+        }
+        for (i3 = 0; i3 < data3.length; i3++) {
+            var text = data3[i3]
+            const myArray = text.split(" ")
+
+            const buttonGroup = buttonGroups[i].children[1]
+            var quality = myArray[1]
+            const buttonInput = document.createElement("input")
+            buttonInput.type = "radio"
+            buttonInput.className = "btn-check"
+            buttonInput.name = "btnradio" + "-q" + String(i)
+            const id = "btnradio" + String(i) + "-q" + String(i3)
+            buttonInput.id = id
+            buttonInput.autocomplete = "off"
+            const buttonLabel = document.createElement("label")
+            buttonLabel.className = "btn btn-outline-primary"
+            buttonLabel.htmlFor = id
+            buttonLabel.innerText = quality
             buttonGroup.appendChild(buttonInput)
             buttonGroup.appendChild(buttonLabel)
         }
