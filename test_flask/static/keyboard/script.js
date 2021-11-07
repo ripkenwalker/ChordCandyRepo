@@ -9,38 +9,24 @@ function handle_response(e) {
     var actual_JSON = JSON.parse(this.response);
     var data = Object.keys(actual_JSON);
     var i = 0;
-    while (i < data.length) {
-        const item = document.createElement("li");
-        const ref = document.createElement("a");
-        ref.innerHTML = data[i];
-        ref.className = "dropdown-item";
-        ref.href = "#";
-        item.appendChild(ref);
-        const element = document.getElementById("chord-select");
-        const dropdown = element.children[0];
-        const dropdownmenu = dropdown.children[1];
-        dropdownmenu.appendChild(item);
-        i++;
-    }
-    const element = document.getElementById("chord-select");
-    const dropdown = element.children[0];
-    const dropdownmenu = dropdown.children[1];
-    i = 0;
-    while (i < dropdownmenu.children.length) {
-        const element = document.getElementById("chord-select");
-        const dropdown = element.children[0];
-        const dropdownmenu = dropdown.children[1];
-        const dropdownitem = dropdownmenu.children[i];
-        const submenu = document.createElement("ul");
-        submenu.className = "dropdown-menu dropdown-submenu";
-        const item = document.createElement("li");
-        const ref = document.createElement("a");
-        ref.innerHTML = "Major";
-        ref.className = "dropdown-item";
-        ref.href = "#";
-        item.appendChild(ref);
-        submenu.appendChild(item)
-        dropdownitem.appendChild(submenu);
+    const buttonGroups = document.getElementsByClassName("chord-names")
+    while (i < buttonGroups.length) {
+        for (i2 = 0; i2 < data.length; i2++) {
+            const buttonGroup = buttonGroups[i].children[0]
+            const buttonInput = document.createElement("input")
+            buttonInput.type = "radio"
+            buttonInput.className = "btn-check"
+            buttonInput.name = "btnradio" + String(i)
+            const id = "btnradio" + String(i) + "-" + String(i2)
+            buttonInput.id = id
+            buttonInput.autocomplete = "off"
+            const buttonLabel = document.createElement("label")
+            buttonLabel.className = "btn btn-outline-primary"
+            buttonLabel.htmlFor = id
+            buttonLabel.innerText = data[i2]
+            buttonGroup.appendChild(buttonInput)
+            buttonGroup.appendChild(buttonLabel)
+        }
         i++;
     }
 }
