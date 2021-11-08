@@ -19,7 +19,7 @@ app = Flask(__name__)
 @app.route('/chordDict')
 def getChordDict():
     f = open('Backend_Functions/chordDictionary.json')
-    data = json.load(f)
+    data = f.read()
     f.close()
     return data
 
