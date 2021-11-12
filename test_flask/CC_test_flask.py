@@ -1,24 +1,20 @@
 from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request,json,send_from_directory, flash, url_for, redirect, session,send_file,redirect
-# from flask_wtf import FlaskForm
-# from wtforms import SelectField,HiddenField,SubmitField,FieldList,FormField
-# import pretty_midi
-# import librosa
 import os
 import subprocess
-# from functools import wraps
 from wtforms import Form, BooleanField, TextField, PasswordField, validators,RadioField
 import gc
 #import requests
 import sys,traceback
 dev_mode = 'FALSE'
+from Backend_Functions.mainCallMultiple import mainCallMultiple
 
 app = Flask(__name__)
 # @app.route('/<path:filename>')
 
 @app.route('/chordDict')
 def getChordDict():
-    f = open('Backend_Functions/chordDictionary.json')
+    f = open('test_flask\Backend_Functions\chordDictionary.json')
     data = f.read()
     f.close()
     return data
@@ -29,6 +25,22 @@ def serve_static(filename):
     print("root ",root_dir,app.root_path,app.instance_path)
     print(os.path.join(root_dir, 'static\\keyboard\\'), filename)
     return send_from_directory(os.path.join(root_dir, 'static\\keyboard\\'), filename)
+
+@app.route('/chordsend')
+def chordsend():
+    #print("got in")
+    chordIn1 = request.args.get('chord1')
+    chordIn2 = request.args.get('chord2')
+    chordIn3 = request.args.get('chord3')
+    chordIn4 = request.args.get('chord4')
+    
+    inputChord = [str(chordIn1), str(chordIn2), str(chordIn3), str(chordIn4)]
+    print(inputChord)
+
+    destChords = mainCallMultiple(inputChord)
+
+    return jsonify(destChords)
+
 
 
 

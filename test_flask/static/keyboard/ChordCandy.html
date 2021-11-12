@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="script.js" defer></script>
-    <!--<script src="dropdown_script.js" defer></script>-->
+    <!-- <script src="dropdown_script.js" defer></script> -->
 
     <!-- Scripts from Tone.js sampler example (for the piano UI)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/webcomponents-bundle.js"></script>
@@ -115,6 +115,32 @@
             </div>-->
         </div>
     </div>
+
+    <script type="text/javascript">  
+      var send_request = function() {
+              document.getElementById("output").innerHtml="<p align='center' style='color:grey;'>(processing...)</p>"
+              var xhr = new XMLHttpRequest();
+              xhr.addEventListener('load',backendCall)
+              chord1 = document.getElementById("chord1").value;
+              chord2 = document.getElementById("chord2").value;
+              chord3 = document.getElementById("chord3").value;
+              chord4 = document.getElementById("chord4").value;
+
+
+              xhr.open('GET', '/chordsend?chord1=' + chord1 + 
+                                            "&chord2=" + chord2 + 
+                                            "&chord3=" + chord3 + 
+                                            "&chord4=" + chord4, true);                   
+              xhr.send();
+          };
+
+          function backendCall(e){
+                 console.log(JSON.parse(this.response));
+                 response = JSON.parse(this.response)
+                 document.getElementById("output").innerHTML = response;
+             }
+          
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
