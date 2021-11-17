@@ -5,7 +5,9 @@ import numpy as np
 import json
 from music21 import *
 from Backend_Functions.chordIntSplit import chordIntSplit
+#from chordIntSplit import chordIntSplit
 from Backend_Functions.getDictPath import getDictPath
+#from getDictPath import getDictPath
 
 with open(getDictPath(), 'r') as dictOpen:
     nameToNum = json.load(dictOpen)
@@ -22,7 +24,7 @@ def firstChordInfo(inputChord):
             z = 'inChord has an invalid string (string is case sensitive)'
             return z
     elif type(inChord) is int:
-        if len(str(inChord)) != 6:
+        if len(str(inChord)) != 8:
             z = 'inChord vector spelling requires a six digit integer'
             return z
         else:
