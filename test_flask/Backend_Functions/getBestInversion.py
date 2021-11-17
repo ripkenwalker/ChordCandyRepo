@@ -6,6 +6,10 @@ from Backend_Functions.chordIntSplit import chordIntSplit
 from Backend_Functions.chordIntCombine import chordIntCombine
 from Backend_Functions.getDictPath import getDictPath
 
+#from chordIntSplit import chordIntSplit
+#from chordIntCombine import chordIntCombine
+#from getDictPath import getDictPath
+
 with open(getDictPath(), 'r') as dictOpen:
     nameToNum = json.load(dictOpen)
 
@@ -18,7 +22,7 @@ def getBestInversion(inChord, destChord):
             z = 'inChord has an invalid string (string is case sensitive)'
             return z
     elif type(inChord) is int:
-        if len(str(inChord)) != 6:
+        if len(str(inChord)) != 8:
             z = 'inChord vector spelling requires a six digit integer'
             return z
         else:
@@ -40,33 +44,64 @@ def getBestInversion(inChord, destChord):
     destChord = destChord.replace("b", "-")
     destNums = nested_lookup(key = destChord, document = nameToNum, wild = True, with_keys= False)
 
-    # Initialize arrays
-    lookupArray = np.zeros(9)
-    magArray = np.zeros(9)
-    nameArray = np.zeros(9, dtype=object)
-    num = 0
+    if destChord.count("7") == 1:
+        # Initialize arrays
+        lookupArray = np.zeros(12)
+        magArray = np.zeros(12)
+        nameArray = np.zeros(12, dtype=object)
+        num = 0
 
-    # Make list of inversions
-    for n in destNums[0]:
-        nIndex = num*3
-        nameArray[nIndex:(nIndex+3)] = n
-        num += 1
+        # Make list of inversions
+        for n in destNums[0]:
+            nIndex = num*3
+            nameArray[nIndex:(nIndex+3)] = n
+            num += 1
 
-    for n in range(0, len(destNums)-1):
-        arrayIndex = n*3
-        # Split destination chord into separate note values for comparison
-        destTest = np.array(chordIntSplit(destNums[n+1]))
-        lookupArray[arrayIndex] = chordIntCombine(destTest)
-        magArray[arrayIndex] = np.sum(np.abs(destTest - inputSplit))
+        for n in range(0, len(destNums)-1):
+            arrayIndex = n*3
+            # Split destination chord into separate note values for comparison
+            destTest = np.array(chordIntSplit(destNums[n+1]))
+            lookupArray[arrayIndex] = chordIntCombine(destTest)
+            magArray[arrayIndex] = np.sum(np.abs(destTest - inputSplit))
 
-    # Look at octave above and octave below
-        upOct = destTest + 12
-        lookupArray[arrayIndex+1] = chordIntCombine(upOct)
-        magArray[arrayIndex+1] = np.sum(np.abs(upOct - inputSplit))
-        
-        downOct = destTest - 12
-        lookupArray[arrayIndex+2] = chordIntCombine(downOct)
-        magArray[arrayIndex+2] = np.sum(np.abs(downOct - inputSplit))
+        # Look at octave above and octave below
+            upOct = destTest + 12
+            lookupArray[arrayIndex+1] = chordIntCombine(upOct)
+            magArray[arrayIndex+1] = np.sum(np.abs(upOct - inputSplit))
+            
+            downOct = destTest - 12
+            lookupArray[arrayIndex+2] = chordIntCombine(downOct)
+            magArray[arrayIndex+2] = np.sum(np.abs(downOct - inputSplit))
+
+
+    else:
+        # Initialize arrays
+        lookupArray = np.zeros(9)
+        magArray = np.zeros(9)
+        nameArray = np.zeros(9, dtype=object)
+        num = 0
+
+        # Make list of inversions
+        for n in destNums[0]:
+            nIndex = num*3
+            nameArray[nIndex:(nIndex+3)] = n
+            num += 1
+
+        for n in range(0, len(destNums)-1):
+            arrayIndex = n*3
+            # Split destination chord into separate note values for comparison
+            destTest = np.array(chordIntSplit(destNums[n+1]))
+            lookupArray[arrayIndex] = chordIntCombine(destTest)
+            magArray[arrayIndex] = np.sum(np.abs(destTest - inputSplit))
+
+        # Look at octave above and octave below
+            upOct = destTest + 12
+            lookupArray[arrayIndex+1] = chordIntCombine(upOct)
+            magArray[arrayIndex+1] = np.sum(np.abs(upOct - inputSplit))
+            
+            downOct = destTest - 12
+            lookupArray[arrayIndex+2] = chordIntCombine(downOct)
+            magArray[arrayIndex+2] = np.sum(np.abs(downOct - inputSplit))
 
     # Combines the names with the corresponding magnitude calculation
     combArr = np.column_stack((magArray, nameArray))

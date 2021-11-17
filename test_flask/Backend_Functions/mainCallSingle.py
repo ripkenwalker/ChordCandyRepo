@@ -3,7 +3,7 @@ from getBestInversion import getBestInversion
 
 userInput = 'C#/Db Minor 1st Inversion'
 userInput = userInput.replace("b", "-")
-userDestination = 'D Major'
+userDestination = 'D Major 7th'
 
 # Call entire function
 fullOut = getBestInversion(userInput, userDestination)

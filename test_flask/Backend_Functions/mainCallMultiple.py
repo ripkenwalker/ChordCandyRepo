@@ -1,5 +1,9 @@
 from Backend_Functions.getBestInversion import getBestInversion
 from Backend_Functions.firstChordInfo import firstChordInfo
+
+#from getBestInversion import getBestInversion
+#from firstChordInfo import firstChordInfo
+
 import json
 
 def mainCallMultiple(userInput):
