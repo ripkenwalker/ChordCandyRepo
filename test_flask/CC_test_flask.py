@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from flask import Flask, jsonify, render_template, request,json,send_from_directory, flash, url_for, redirect, session,send_file,redirect
 import os
+from pathlib import Path
+import pathlib
 import subprocess
 from wtforms import Form, BooleanField, TextField, PasswordField, validators,RadioField
 import gc
@@ -8,13 +10,15 @@ import gc
 import sys,traceback
 dev_mode = 'FALSE'
 from Backend_Functions.mainCallMultiple import mainCallMultiple
+from Backend_Functions.getDictPath import getDictPath
+
 
 app = Flask(__name__)
 # @app.route('/<path:filename>')
 
 @app.route('/chordDict')
 def getChordDict():
-    f = open('Backend_Functions\chordDictionary.json')
+    f = open(getDictPath())
     data = f.read()
     f.close()
     return data
