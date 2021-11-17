@@ -5,6 +5,57 @@ var send_request = function() {
     xhr.send();
 };
 
+var chordNames = []
+var chordQualities = []
+var chordInversion = ""
+
+function setChordString(e) {
+    var value = e.target.labels[0].innerText
+    var buttonId = e.target.id
+    var preNum = buttonId.split("btnradio")
+    var preNum2 = preNum[1].split("-")
+    var chordNum = preNum2[0]
+    var valueType = preNum2[1][0]
+
+    switch(valueType) {
+        case 'n':
+            chordNames[chordNum] = value
+            break
+        case 'q':
+            chordQualities[chordNum] = value
+            break
+        case 'i':
+            chordInversion = value
+            break
+        default:
+            break
+    }
+}
+
+function getChordsReady() {
+    const buttonGroups = document.getElementsByClassName("chord-names")
+    var chordList = []
+    var i = 0
+    while (i < buttonGroups.length) {
+        if (i == 0) {
+            if (chordNames[i] != undefined && chordQualities[i] != undefined && chordInversion != "") {
+                chordList[i] = chordNames[i] + " " + chordQualities[i] + " " + chordInversion
+            } else {
+                console.log("Please make sure to click a value on all the buttons!")
+            }
+        }
+        else {
+            if (chordNames[i] != undefined && chordQualities[i] != undefined) {
+                chordList[i] = chordNames[i] + " " + chordQualities[i]
+            } else {
+                console.log("Please make sure to click a value on all the buttons!")
+            }
+        }
+        i++
+    }
+    console.log(chordList)
+}
+
 function handle_response(e) {
     var actual_JSON = JSON.parse(this.response);
     var data = Object.keys(actual_JSON);
@@ -14,6 +65,7 @@ function handle_response(e) {
     var data5 = Object.keys(data4[0])
     var i = 0;
     const buttonGroups = document.getElementsByClassName("chord-names")
+    // Add buttons with Chord Names -- from the chord dictionary
     while (i < buttonGroups.length) {
         for (i2 = 0; i2 < data.length; i2++) {
             const buttonGroup = buttonGroups[i].children[0]
@@ -21,16 +73,18 @@ function handle_response(e) {
             buttonInput.type = "radio"
             buttonInput.className = "btn-check"
             buttonInput.name = "btnradio" + String(i)
-            const id = "btnradio" + String(i) + "-" + String(i2)
+            const id = "btnradio" + String(i) + "-n" + String(i2)
             buttonInput.id = id
             buttonInput.autocomplete = "off"
             const buttonLabel = document.createElement("label")
             buttonLabel.className = "btn btn-outline-primary"
             buttonLabel.htmlFor = id
             buttonLabel.innerText = data[i2]
+            buttonInput.addEventListener('input', setChordString)
             buttonGroup.appendChild(buttonInput)
             buttonGroup.appendChild(buttonLabel)
         }
+        // Add buttons with Chord Qualities -- from the chord dictionary
         for (i3 = 0; i3 < data3.length; i3++) {
             var text = data3[i3]
             const myArray = text.split(" ")
@@ -48,9 +102,11 @@ function handle_response(e) {
             buttonLabel.className = "btn btn-outline-primary"
             buttonLabel.htmlFor = id
             buttonLabel.innerText = quality
+            buttonInput.addEventListener('input', setChordString)
             buttonGroup.appendChild(buttonInput)
             buttonGroup.appendChild(buttonLabel)
         }
+         // Add buttons with Chord Inversions (only with first chord) -- from the chord dictionary
         if (i < 1) {
             for (i4 = 0; i4 < data5.length; i4++) {
                 var text = data5[i4]
@@ -69,11 +125,12 @@ function handle_response(e) {
                 buttonLabel.className = "btn btn-outline-primary"
                 buttonLabel.htmlFor = id
                 buttonLabel.innerText = inversion
+                buttonInput.addEventListener('input', setChordString)
                 buttonGroup.appendChild(buttonInput)
                 buttonGroup.appendChild(buttonLabel)
             }
         }
-        i++;
+        i++
     }
 }
 send_request();
