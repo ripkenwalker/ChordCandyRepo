@@ -6,7 +6,6 @@ import json
 from music21 import *
 from Backend_Functions.chordIntSplit import chordIntSplit
 from Backend_Functions.getDictPath import getDictPath
-from pathlib import Path
 
 with open(getDictPath(), 'r') as dictOpen:
     nameToNum = json.load(dictOpen)
