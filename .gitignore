@@ -1,4 +1,7 @@
 # macOS Junk Files
 **/.DS_Store
 # node build files
-node_modules
+**/node_modules/**
+# pycache
+**__pycache__/**
+
