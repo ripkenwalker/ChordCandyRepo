@@ -6,3 +6,5 @@ def getDictPath():
     dictPath = Path.cwd() / 'test_flask' / 'Backend_Functions' / 'chordDictionary.json'
 
     return dictPath
+
+print(Path.cwd())
