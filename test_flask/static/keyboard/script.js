@@ -1,159 +1,13 @@
-var send_request = function() {
-    var xhr = new XMLHttpRequest()
-    xhr.addEventListener('load',handle_response)
-    xhr.open('GET', '/chordDict', true)
-    xhr.send()
-}
-
+// Selected Chord Values
 var chordNames = []
 var chordQualities = []
 var chordInversion = ""
 
-var send_chord_request = function() {
-    document.getElementById("output").innerHtml="<p align='center' style='color:grey;'>(processing...)</p>"
-    var xhr = new XMLHttpRequest()
-    xhr.addEventListener('load',backendCall)
-    chord1 = document.getElementById("chord1").value
-    chord2 = document.getElementById("chord2").value
-    chord3 = document.getElementById("chord3").value
-    chord4 = document.getElementById("chord4").value
-    xhr.open('GET', '/chordsend?chord1=' + chord1 + 
-                                "&chord2=" + chord2 + 
-                                "&chord3=" + chord3 + 
-                                "&chord4=" + chord4, true)
-    xhr.send()
-}
-
-function backendCall(e){
-    console.log(JSON.parse(this.response))
-    response = JSON.parse(this.response)
-    document.getElementById("output").innerHTML = response
-}
-
-function setChordString(e) {
-    var value = e.target.labels[0].innerText
-    var buttonId = e.target.id
-    var preNum = buttonId.split("btnradio")
-    var preNum2 = preNum[1].split("-")
-    var chordNum = preNum2[0]
-    var valueType = preNum2[1][0]
-
-    switch(valueType) {
-        case 'n':
-            chordNames[chordNum] = value
-            break
-        case 'q':
-            chordQualities[chordNum] = value
-            break
-        case 'i':
-            chordInversion = value
-            break
-        default:
-            break
-    }
-}
-
-function getChordsReady() {
-    const buttonGroups = document.getElementsByClassName("chord-names")
-    var chordList = []
-    var i = 0
-    while (i < buttonGroups.length) {
-        if (i == 0) {
-            if (chordNames[i] != undefined && chordQualities[i] != undefined && chordInversion != "") {
-                chordList[i] = chordNames[i] + " " + chordQualities[i] + " " + chordInversion
-            } else {
-                console.log("Please make sure to click a value on all the buttons!")
-            }
-        }
-        else {
-            if (chordNames[i] != undefined && chordQualities[i] != undefined) {
-                chordList[i] = chordNames[i] + " " + chordQualities[i]
-            } else {
-                console.log("Please make sure to click a value on all the buttons!")
-            }
-        }
-        i++
-    }
-    console.log(chordList)
-}
-
-function handle_response(e) {
-    var actual_JSON = JSON.parse(this.response)
-    var data = Object.keys(actual_JSON)
-    var data2 = Object.values(actual_JSON)
-    var data3 = Object.keys(data2[0])
-    var data4 = Object.values(data2[0])
-    var data5 = Object.keys(data4[0])
-    var i = 0
-    const buttonGroups = document.getElementsByClassName("chord-names")
-    // Add buttons with Chord Names -- from the chord dictionary
-    while (i < buttonGroups.length) {
-        for (i2 = 0; i2 < data.length; i2++) {
-            const buttonGroup = buttonGroups[i].children[0]
-            const buttonInput = document.createElement("input")
-            buttonInput.type = "radio"
-            buttonInput.className = "btn-check"
-            buttonInput.name = "btnradio" + String(i)
-            const id = "btnradio" + String(i) + "-n" + String(i2)
-            buttonInput.id = id
-            buttonInput.autocomplete = "off"
-            const buttonLabel = document.createElement("label")
-            buttonLabel.className = "btn btn-outline-primary"
-            buttonLabel.htmlFor = id
-            buttonLabel.innerText = data[i2]
-            buttonInput.addEventListener('input', setChordString)
-            buttonGroup.appendChild(buttonInput)
-            buttonGroup.appendChild(buttonLabel)
-        }
-        // Add buttons with Chord Qualities -- from the chord dictionary
-        for (i3 = 0; i3 < data3.length; i3++) {
-            var text = data3[i3]
-            const myArray = text.split(" ")
-            const buttonGroup = buttonGroups[i].children[1]
-            var quality = myArray[1]
-            const buttonInput = document.createElement("input")
-            buttonInput.type = "radio"
-            buttonInput.className = "btn-check"
-            buttonInput.name = "btnradio" + "-q" + String(i)
-            const id = "btnradio" + String(i) + "-q" + String(i3)
-            buttonInput.id = id
-            buttonInput.autocomplete = "off"
-            const buttonLabel = document.createElement("label")
-            buttonLabel.className = "btn btn-outline-primary"
-            buttonLabel.htmlFor = id
-            buttonLabel.innerText = quality
-            buttonInput.addEventListener('input', setChordString)
-            buttonGroup.appendChild(buttonInput)
-            buttonGroup.appendChild(buttonLabel)
-        }
-         // Add buttons with Chord Inversions (only with first chord) -- from the chord dictionary
-        if (i < 1) {
-            for (i4 = 0; i4 < data5.length; i4++) {
-                var text = data5[i4]
-                const myArray = text.split(" ")
-                const buttonGroup = buttonGroups[i].children[2]
-                var inversion = myArray[2] + " " + myArray[3]
-                const buttonInput = document.createElement("input")
-                buttonInput.type = "radio"
-                buttonInput.className = "btn-check"
-                buttonInput.name = "btnradio" + "-i" + String(i)
-                const id = "btnradio" + String(i) + "-i" + String(i4)
-                buttonInput.id = id
-                buttonInput.autocomplete = "off"
-                const buttonLabel = document.createElement("label")
-                buttonLabel.className = "btn btn-outline-primary"
-                buttonLabel.htmlFor = id
-                buttonLabel.innerText = inversion
-                buttonInput.addEventListener('input', setChordString)
-                buttonGroup.appendChild(buttonInput)
-                buttonGroup.appendChild(buttonLabel)
-            }
-        }
-        i++
-    }
-}
-send_request()
-// Tone.js piano sampler
+// Piano Keyboard Properties
+// Store keyboard key names
+const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+const BLACK_KEYS = ['s', 'd', 'g', 'h', 'j']
+// Tone.js Piano Sampler
 const sampler = new Tone.Sampler({
     urls: {
         A0: "A0.mp3",
@@ -191,29 +45,23 @@ const sampler = new Tone.Sampler({
     baseUrl: "https://tonejs.github.io/audio/salamander/"
 }).toDestination()
 
-// Store keyboard key names
-const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
-const BLACK_KEYS = ['s', 'd', 'g', 'h', 'j']
-
-
-// Get all key elements in the HTML
+// Get all key elements in the HTML (for the piano keyboard)
 const keys = document.querySelectorAll('.key')
 const whiteKeys = document.querySelectorAll('.key.white')
 const blackKeys = document.querySelectorAll('.key.black')
 
+// Piano Keyboard Functions
 // Unfinished code for being able to do a glissando (with the mouse)
 function trackMouse(e) {
     //var rect = e.target.getBoundingClientRect()
     //console.log(rect)
 }
-
 // What happens when a key on the keyboard is clicked
 keys.forEach(key => {
     // Play a note
     key.addEventListener('mousedown', () => playNote(key))
     key.addEventListener('mouseup', () => releaseNote(key))
 })
-
 // What happens when a key on the computer keyboard is pressed
 document.addEventListener('keydown', e => {
     // If the key is held down, exit the function
@@ -231,7 +79,6 @@ document.addEventListener('keydown', e => {
     if (whiteKeyIndex > -1) playNote(whiteKeys[whiteKeyIndex])
     if (blackKeyIndex > -1) playNote(blackKeys[blackKeyIndex])
 })
-
 //What happens when a key on the computer keyboard is released
 document.addEventListener('keyup', e => {
     // Get the computer keyboard event
@@ -245,7 +92,6 @@ document.addEventListener('keyup', e => {
     if (whiteKeyIndex > -1) releaseNote(whiteKeys[whiteKeyIndex])
     if (blackKeyIndex > -1) releaseNote(blackKeys[blackKeyIndex])
 })
-
 // Play the note audio
 function playNote(key) {
     const piano = document.querySelector('.piano')
@@ -253,13 +99,6 @@ function playNote(key) {
     key.classList.add('active')
     sampler.triggerAttack(key.dataset.note)
 }
-
-function dropdownPlayNote(key_Index) {
-    const key = keys[key_Index]
-    key.classList.add('active')
-    sampler.triggerAttack(key.dataset.note)
-}
-
 // Release the note audio
 function releaseNote(key) {
     const piano = document.querySelector('.piano')
@@ -267,10 +106,171 @@ function releaseNote(key) {
     key.classList.remove('active')
     sampler.triggerRelease(key.dataset.note)
 }
-
+function dropdownPlayNote(key_Index) {
+    const key = keys[key_Index]
+    key.classList.add('active')
+    sampler.triggerAttack(key.dataset.note)
+}
 function dropdownReleaseNote(key_Index) {
     const key = keys[key_Index]
     key.classList.remove('active')
     sampler.triggerRelease(key.dataset.note)
 }
 
+// Chord Functions (pre request to backend)
+function setChordString(e) {
+    var value = e.target.labels[0].innerText
+    var selectedButtonID = e.target.id
+    var buttonDetails = selectedButtonID.split("btnradio")
+    var buttonIdentity = buttonDetails[1].split("-")
+    var chordNum = buttonIdentity[0]
+    var valueType = buttonIdentity[1][0]
+
+    switch(valueType) {
+        // User selected chord name
+        case 'n':
+            chordNames[chordNum] = value
+            break
+        // User selected chord quality
+        case 'q':
+            chordQualities[chordNum] = value
+            break
+        // User selected chord inversion (for first chord only)
+        case 'i':
+            chordInversion = value
+            break
+        default:
+            break
+    }
+}
+function getChordsReady() {
+    const chords = document.getElementsByClassName("chord-names")
+    var chordList = []
+    var i = 0
+    while (i < chords.length) {
+        if (i == 0) {
+            if (chordNames[i] != undefined && chordQualities[i] != undefined && chordInversion != "") {
+                chordList[i] = chordNames[i] + " " + chordQualities[i] + " " + chordInversion
+            } else {
+                console.log("Please make sure to click a value on all the buttons!")
+            }
+        }
+        else {
+            if (chordNames[i] != undefined && chordQualities[i] != undefined) {
+                chordList[i] = chordNames[i] + " " + chordQualities[i]
+            } else {
+                console.log("Please make sure to click a value on all the buttons!")
+            }
+        }
+        i++
+    }
+    console.log(chordList)
+}
+
+// XML Request Functions
+var getChordDict = function() {
+    var xhr = new XMLHttpRequest()
+    xhr.addEventListener('load',chordDictResponse)
+    xhr.open('GET', '/chordDict', true)
+    xhr.send()
+}
+var sendChord = function() {
+    document.getElementById("output").innerHtml="<p align='center' style='color:grey;'>(processing...)</p>"
+    var xhr = new XMLHttpRequest()
+    xhr.addEventListener('load',sendChordResponse)
+    chord1 = document.getElementById("chord1").value
+    chord2 = document.getElementById("chord2").value
+    chord3 = document.getElementById("chord3").value
+    chord4 = document.getElementById("chord4").value
+    xhr.open('GET', '/chordsend?chord1=' + chord1 + 
+                                "&chord2=" + chord2 + 
+                                "&chord3=" + chord3 + 
+                                "&chord4=" + chord4, true)
+    xhr.send()
+}
+
+// XML Response Functions
+function chordDictResponse(e) {
+    var actual_JSON = JSON.parse(this.response)
+    console.log(actual_JSON)
+    var chordNames = Object.keys(actual_JSON)
+    console.log(chordNames)
+    var data2 = Object.values(actual_JSON)
+    var data3 = Object.keys(data2[0])
+    var data4 = Object.values(data2[0])
+    var data5 = Object.keys(data4[0])
+    var i = 0
+    const chords = document.getElementsByClassName("chord-names")
+    // Add buttons with Chord Names -- from the chord dictionary
+    while (i < chords.length) {
+        for (i2 = 0; i2 < chordNames.length; i2++) {
+            const buttonGroup = chords[i].children[0]
+            const buttonInput = document.createElement("input")
+            buttonInput.type = "radio"
+            buttonInput.className = "btn-check"
+            buttonInput.name = "btnradio" + String(i)
+            const id = "btnradio" + String(i) + "-n" + String(i2)
+            buttonInput.id = id
+            buttonInput.autocomplete = "off"
+            const buttonLabel = document.createElement("label")
+            buttonLabel.className = "btn btn-outline-primary"
+            buttonLabel.htmlFor = id
+            buttonLabel.innerText = chordNames[i2]
+            buttonInput.addEventListener('input', setChordString)
+            buttonGroup.appendChild(buttonInput)
+            buttonGroup.appendChild(buttonLabel)
+        }
+        // Add buttons with Chord Qualities -- from the chord dictionary
+        for (i3 = 0; i3 < data3.length; i3++) {
+            var text = data3[i3]
+            const myArray = text.split(" ")
+            const buttonGroup = chords[i].children[1]
+            var quality = myArray[1]
+            const buttonInput = document.createElement("input")
+            buttonInput.type = "radio"
+            buttonInput.className = "btn-check"
+            buttonInput.name = "btnradio" + "-q" + String(i)
+            const id = "btnradio" + String(i) + "-q" + String(i3)
+            buttonInput.id = id
+            buttonInput.autocomplete = "off"
+            const buttonLabel = document.createElement("label")
+            buttonLabel.className = "btn btn-outline-primary"
+            buttonLabel.htmlFor = id
+            buttonLabel.innerText = quality
+            buttonInput.addEventListener('input', setChordString)
+            buttonGroup.appendChild(buttonInput)
+            buttonGroup.appendChild(buttonLabel)
+        }
+         // Add buttons with Chord Inversions (only with first chord) -- from the chord dictionary
+        if (i < 1) {
+            for (i4 = 0; i4 < data5.length; i4++) {
+                var text = data5[i4]
+                const myArray = text.split(" ")
+                const buttonGroup = chords[i].children[2]
+                var inversion = myArray[2] + " " + myArray[3]
+                const buttonInput = document.createElement("input")
+                buttonInput.type = "radio"
+                buttonInput.className = "btn-check"
+                buttonInput.name = "btnradio" + "-i" + String(i)
+                const id = "btnradio" + String(i) + "-i" + String(i4)
+                buttonInput.id = id
+                buttonInput.autocomplete = "off"
+                const buttonLabel = document.createElement("label")
+                buttonLabel.className = "btn btn-outline-primary"
+                buttonLabel.htmlFor = id
+                buttonLabel.innerText = inversion
+                buttonInput.addEventListener('input', setChordString)
+                buttonGroup.appendChild(buttonInput)
+                buttonGroup.appendChild(buttonLabel)
+            }
+        }
+        i++
+    }
+}
+function sendChordResponse(e){
+    console.log(JSON.parse(this.response))
+    response = JSON.parse(this.response)
+    document.getElementById("output").innerHTML = response
+}
+
+getChordDict()
