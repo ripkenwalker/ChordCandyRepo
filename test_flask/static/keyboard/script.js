@@ -1,13 +1,34 @@
 var send_request = function() {
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest()
     xhr.addEventListener('load',handle_response)
-    xhr.open('GET', '/chordDict', true);                   
-    xhr.send();
-};
+    xhr.open('GET', '/chordDict', true)
+    xhr.send()
+}
 
 var chordNames = []
 var chordQualities = []
 var chordInversion = ""
+
+var send_chord_request = function() {
+    document.getElementById("output").innerHtml="<p align='center' style='color:grey;'>(processing...)</p>"
+    var xhr = new XMLHttpRequest()
+    xhr.addEventListener('load',backendCall)
+    chord1 = document.getElementById("chord1").value
+    chord2 = document.getElementById("chord2").value
+    chord3 = document.getElementById("chord3").value
+    chord4 = document.getElementById("chord4").value
+    xhr.open('GET', '/chordsend?chord1=' + chord1 + 
+                                "&chord2=" + chord2 + 
+                                "&chord3=" + chord3 + 
+                                "&chord4=" + chord4, true)
+    xhr.send()
+}
+
+function backendCall(e){
+    console.log(JSON.parse(this.response))
+    response = JSON.parse(this.response)
+    document.getElementById("output").innerHTML = response
+}
 
 function setChordString(e) {
     var value = e.target.labels[0].innerText
@@ -57,13 +78,13 @@ function getChordsReady() {
 }
 
 function handle_response(e) {
-    var actual_JSON = JSON.parse(this.response);
-    var data = Object.keys(actual_JSON);
-    var data2 = Object.values(actual_JSON);
+    var actual_JSON = JSON.parse(this.response)
+    var data = Object.keys(actual_JSON)
+    var data2 = Object.values(actual_JSON)
     var data3 = Object.keys(data2[0])
     var data4 = Object.values(data2[0])
     var data5 = Object.keys(data4[0])
-    var i = 0;
+    var i = 0
     const buttonGroups = document.getElementsByClassName("chord-names")
     // Add buttons with Chord Names -- from the chord dictionary
     while (i < buttonGroups.length) {
@@ -88,7 +109,6 @@ function handle_response(e) {
         for (i3 = 0; i3 < data3.length; i3++) {
             var text = data3[i3]
             const myArray = text.split(" ")
-
             const buttonGroup = buttonGroups[i].children[1]
             var quality = myArray[1]
             const buttonInput = document.createElement("input")
@@ -111,7 +131,6 @@ function handle_response(e) {
             for (i4 = 0; i4 < data5.length; i4++) {
                 var text = data5[i4]
                 const myArray = text.split(" ")
-    
                 const buttonGroup = buttonGroups[i].children[2]
                 var inversion = myArray[2] + " " + myArray[3]
                 const buttonInput = document.createElement("input")
@@ -133,8 +152,7 @@ function handle_response(e) {
         i++
     }
 }
-send_request();
-
+send_request()
 // Tone.js piano sampler
 const sampler = new Tone.Sampler({
     urls: {
@@ -171,7 +189,7 @@ const sampler = new Tone.Sampler({
     },
     release: 1,
     baseUrl: "https://tonejs.github.io/audio/salamander/"
-}).toDestination();
+}).toDestination()
 
 // Store keyboard key names
 const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
@@ -183,6 +201,7 @@ const keys = document.querySelectorAll('.key')
 const whiteKeys = document.querySelectorAll('.key.white')
 const blackKeys = document.querySelectorAll('.key.black')
 
+// Unfinished code for being able to do a glissando (with the mouse)
 function trackMouse(e) {
     //var rect = e.target.getBoundingClientRect()
     //console.log(rect)
@@ -232,7 +251,7 @@ function playNote(key) {
     const piano = document.querySelector('.piano')
     piano.addEventListener('mousemove', trackMouse)
     key.classList.add('active')
-    sampler.triggerAttack(key.dataset.note);
+    sampler.triggerAttack(key.dataset.note)
 }
 
 function dropdownPlayNote(key_Index) {
@@ -245,13 +264,13 @@ function dropdownPlayNote(key_Index) {
 function releaseNote(key) {
     const piano = document.querySelector('.piano')
     piano.removeEventListener('mousemove', trackMouse)
-    key.classList.remove('active');
-    sampler.triggerRelease(key.dataset.note);
+    key.classList.remove('active')
+    sampler.triggerRelease(key.dataset.note)
 }
 
 function dropdownReleaseNote(key_Index) {
     const key = keys[key_Index]
-    key.classList.remove('active');
-    sampler.triggerRelease(key.dataset.note);
+    key.classList.remove('active')
+    sampler.triggerRelease(key.dataset.note)
 }
 
