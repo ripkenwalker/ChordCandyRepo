@@ -4,5 +4,5 @@
 **/node_modules/**
 # pycache
 **/__pycache__/**
-# Tone.js build files
-**/Tone.js/build/**
+# Tone.js files
+/Tone.js/**

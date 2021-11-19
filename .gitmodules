@@ -1,6 +1,6 @@
 
-[submodule "test_flask/static/keyboard/Tone.js"]
-	path = test_flask/static/keyboard/Tone.js
+[submodule "Chord_Candy/static/keyboard/Tone.js"]
+	path = Chord_Candy/static/keyboard/Tone.js
 	url = https://github.com/Tonejs/Tone.js
 	branch = master
 
