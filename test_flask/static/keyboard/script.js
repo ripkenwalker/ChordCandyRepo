@@ -7,6 +7,13 @@ var chordNames = []
 var chordQualities = []
 var chordInversion = ""
 
+
+/* 
+-----------------------------------
+ Tone.js Implementation
+-----------------------------------
+*/
+
 // Piano Keyboard Properties
 // Store keyboard key names
 const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
@@ -121,6 +128,12 @@ function dropdownReleaseNote(key_Index) {
     sampler.triggerRelease(key.dataset.note)
 }
 
+/* 
+-----------------------------------
+ Front End/Back End Communication
+-----------------------------------
+*/
+
 // Chord Functions (pre request to backend)
 function setChordString(e) {
     var value = e.target.labels[0].innerText
@@ -148,6 +161,7 @@ function setChordString(e) {
     }
     getChordsReady()
 }
+
 // Prepare chords to be sent to the backend
 function getChordsReady() {
     const chords = document.getElementsByClassName("chord-names")
@@ -175,6 +189,7 @@ function getChordsReady() {
 
     sendChord(chordList)
 }
+
 // Traverse chord dictionary and find all possible chords
 function getAvailableChordValues(obj) {
     for (let k in obj) {
@@ -193,6 +208,7 @@ function getAvailableChordValues(obj) {
         }
     }
 }
+
 // Create selection buttons for all possible chord values
 function populateAvailableChordValues(inputSet, chordNumber, chordCards) {
     var i = 0
@@ -276,6 +292,7 @@ function getChordDictResponse(e) {
         i++
     }
 }
+
 function sendChordResponse(e){
     console.log(JSON.parse(this.response))
     response = JSON.parse(this.response)
@@ -297,9 +314,6 @@ function sendChordResponse(e){
         chordName4.textContent = String(response[3][0]);
 
     }
-
-
-
 }
 
 getChordDict()
