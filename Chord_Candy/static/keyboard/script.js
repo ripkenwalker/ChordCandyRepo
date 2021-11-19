@@ -120,6 +120,13 @@ function dropdownReleaseNote(key_Index) {
     key.classList.remove('active')
     sampler.triggerRelease(key.dataset.note)
 }
+// Function for highligting selected JSON Chord
+function PlayJSON(key_Index) {
+    // key from script.js
+    const key = keys[key_Index]
+    key.classList.add('active')
+    sampler.triggerAttack(key.dataset.note)
+}
 
 // Chord Functions (pre request to backend)
 function setChordString(e) {
@@ -298,6 +305,19 @@ function sendChordResponse(e){
 
     }
 
+    const chord1 = response[0][2];
+    const chord2 = response[1][2];
+    const chord3 = response[2][2];
+    const chord4 = response[3][2];
+
+    for (let i = 0; i < 4; i++) {
+        ind = chord1[i]-36
+        if (ind > 0) {
+            PlayJSON(ind)
+        } else {
+            PlayJSON(ind+12)
+        }
+    }
 
 
 }
