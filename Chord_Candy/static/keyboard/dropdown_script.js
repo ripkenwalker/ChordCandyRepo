@@ -23,138 +23,228 @@ const allKey = document.querySelectorAll('.key');
 
 // Get all the chords
 const allChords = document.querySelectorAll('.chord');
-const CMaj = document.querySelector('#CM');
-const DMaj = document.querySelector('#DM');
-const EMaj = document.querySelector('#EM');
-const FMaj = document.querySelector('#FM');
-const GMaj = document.querySelector('#GM');
-const AMaj = document.querySelector('#AM');
-const BMaj = document.querySelector('#BM');
+const chord1_button = document.querySelector('#chord1');
+const chord2_button = document.querySelector('#chord2');
+const chord3_button = document.querySelector('#chord3');
+const chord4_button = document.querySelector('#chord4');
 // ... ... //
 
-console.log(allChords)
+function getchord1(chord1) {
+  chord1Val = []
+  for (let i=0; i < chord1.length; i++) {
+    chordInd = chord1[i]-36
+    if (chordInd > 0) {
+        chord1Val.push(chordInd)
+    } else {
+        chord1Val.push(chordInd+12)
+    }
+  }
+}
 
-// const chordsIndex = [[0, 4, 7],[2, 6, 9],[4, 8, 11],[6, 10, 1]]
-// console.log(chordsIndex[0])
+function getchord2(chord2) {
+  chord2Val = []
+  for (let i=0; i < chord2.length; i++) {
+    chordInd = chord2[i]-36
+    if (chordInd > 0) {
+        chord2Val.push(chordInd)
+    } else {
+        chord2Val.push(chordInd+12)
+    }
+  }
+}
 
-// for (i = 0; i < allChords.length; i++) {
-//   allChords[i].addEventListener('click', e => {
-//     // const notes = [0, 4, 7]
-//     for (let j = 0; j < notes.length; j++) {
-//       // dropdownPlayNote(notes[j])
-//       dropdownPlayNote(chordsIndex[i][j])
-//       console.log()
-//     }
-//   })
-// }
+function getchord3(chord3) {
+  chord3Val = []
+  for (let i=0; i < chord3.length; i++) {
+    chordInd = chord3[i]-36
+    if (chordInd > 0) {
+        chord3Val.push(chordInd)
+    } else {
+        chord3Val.push(chordInd+12)
+    }
+  }
+}
+
+function getchord4(chord4) {
+  chord4Val = []
+  for (let i=0; i < chord4.length; i++) {
+    chordInd = chord4[i]-36
+    if (chordInd > 0) {
+        chord4Val.push(chordInd)
+    } else {
+        chord4Val.push(chordInd+12)
+    }
+  }
+}
 
 var check = new Boolean(false)
-CMaj.addEventListener('click', e => {
+chord1_button.addEventListener('click', e => {
   check = !check
+  console.log(chord1Val)
   if (check){
-    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+    const allnotes = Array.from(Array(36).keys())
     for (let i = 0; i < allnotes.length; i++) {
       dropdownReleaseNote(allnotes[i])
     }
   }
   else {
-    const notes = [0, 4, 7]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
-    }
-  }
-})
-DMaj.addEventListener('click', e => {
-  check = !check
-  if (check){
-    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
-    for (let i = 0; i < allnotes.length; i++) {
-      dropdownReleaseNote(allnotes[i])
-    }
-  }
-  else {
-    const notes = [2, 6, 9]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
-    }
-  }
-})
-EMaj.addEventListener('click', e => {
-  check = !check
-  if (check){
-    const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
-    for (let i = 0; i < allnotes.length; i++) {
-      dropdownReleaseNote(allnotes[i])
-    }
-  }
-  else {
-    const notes = [4, 8, 11]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
-    }
-  }
-})
-FMaj.addEventListener('click', e => {
-  check = !check
-  if (check){
-    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
-    for (let i = 0; i < allnotes.length; i++) {
-      dropdownReleaseNote(allnotes[i])
-    }
-  }
-  else {
-    const notes = [5, 9, 12]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
-    }
-  }
-})
-GMaj.addEventListener('click', e => {
-  check = !check
-  if (check){
-    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
-    for (let i = 0; i < allnotes.length; i++) {
-      dropdownReleaseNote(allnotes[i])
-    }
-  }
-  else {
-    const notes = [7, 11, 14]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
-    }
-  }
-})
-AMaj.addEventListener('click', e => {
-  check = !check
-  if (check){
-    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
-    for (let i = 0; i < allnotes.length; i++) {
-      dropdownReleaseNote(allnotes[i])
-    }
-  }
-  else {
-    const notes = [9, 13, 16]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
-    }
-  }
-})
-BMaj.addEventListener('click', e => {
-  check = !check
-  if (check){
-    const allnotes = Array.from(Array(36).keys()) // total of 36 keys
-    for (let i = 0; i < allnotes.length; i++) {
-      dropdownReleaseNote(allnotes[i])
-    }
-  }
-  else {
-    const notes = [11, 15, 18]
-    for (let i = 0; i < notes.length; i++) {
-      dropdownPlayNote(notes[i])
+    for (let i = 0; i < chord1Val.length; i++) {
+      dropdownPlayNote(chord1Val[i])
     }
   }
 })
 
+chord2_button.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = Array.from(Array(36).keys())
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    for (let i = 0; i < chord2Val.length; i++) {
+      dropdownPlayNote(chord2Val[i])
+    }
+  }
+})
+
+chord3_button.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = Array.from(Array(36).keys())
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    for (let i = 0; i < chord3Val.length; i++) {
+      dropdownPlayNote(chord3Val[i])
+    }
+  }
+})
+
+chord4_button.addEventListener('click', e => {
+  check = !check
+  if (check){
+    const allnotes = Array.from(Array(36).keys())
+    for (let i = 0; i < allnotes.length; i++) {
+      dropdownReleaseNote(allnotes[i])
+    }
+  }
+  else {
+    for (let i = 0; i < chord4Val.length; i++) {
+      dropdownPlayNote(chord4Val[i])
+    }
+  }
+})
+
+// var check = new Boolean(false)
+// CMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [0, 4, 7]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
+// DMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [2, 6, 9]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
+// EMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [4, 8, 11]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
+// FMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [5, 9, 12]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
+// GMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [7, 11, 14]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
+// AMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [9, 13, 16]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
+// BMaj.addEventListener('click', e => {
+//   check = !check
+//   if (check){
+//     const allnotes = Array.from(Array(36).keys()) // total of 36 keys
+//     for (let i = 0; i < allnotes.length; i++) {
+//       dropdownReleaseNote(allnotes[i])
+//     }
+//   }
+//   else {
+//     const notes = [11, 15, 18]
+//     for (let i = 0; i < notes.length; i++) {
+//       dropdownPlayNote(notes[i])
+//     }
+//   }
+// })
 
 // CMaj.addEventListener('mouseup', e => {
 //   const allnotes = [0,1,2,3,4,5,6,7,8,9,10,11]
