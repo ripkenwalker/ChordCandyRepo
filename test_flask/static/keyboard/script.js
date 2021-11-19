@@ -168,8 +168,12 @@ function getChordsReady() {
             }
         }
         i++
+
+    
     }
+
     console.log(chordList)
+    sendChord(chordList)
 }
 // Traverse chord dictionary and find all possible chords
 function getAvailableChordValues(obj) {
@@ -235,19 +239,28 @@ var getChordDict = function() {
     xhr.open('GET', '/chordDict', true)
     xhr.send()
 }
-var sendChord = function() {
-    document.getElementById("output").innerHtml="<p align='center' style='color:grey;'>(processing...)</p>"
+var sendChord = function(inputChordList) {
     var xhr = new XMLHttpRequest()
     xhr.addEventListener('load',sendChordResponse)
-    chord1 = document.getElementById("chord1").value
-    chord2 = document.getElementById("chord2").value
-    chord3 = document.getElementById("chord3").value
-    chord4 = document.getElementById("chord4").value
+    
+
+    chord1 = encodeURIComponent(inputChordList[0]);
+    chord2 = encodeURIComponent(inputChordList[1]);
+    chord3 = encodeURIComponent(inputChordList[2]);
+    chord4 = encodeURIComponent(inputChordList[3]);
+
+
     xhr.open('GET', '/chordsend?chord1=' + chord1 + 
-                                "&chord2=" + chord2 + 
-                                "&chord3=" + chord3 + 
-                                "&chord4=" + chord4, true)
-    xhr.send()
+                    "&chord2=" + chord2 + 
+                    "&chord3=" + chord3 + 
+                    "&chord4=" + chord4, true);                   
+    xhr.send();
+
+    console.log(inputChordList)
+    console.log(chord1)
+    console.log(chord2)
+    console.log(chord3)
+    console.log(chord4)
 }
 
 // XML Response Functions
@@ -269,7 +282,7 @@ function getChordDictResponse(e) {
 function sendChordResponse(e){
     console.log(JSON.parse(this.response))
     response = JSON.parse(this.response)
-    document.getElementById("output").innerHTML = response
+    // document.getElementById("output").innerHTML = response
 }
 
 getChordDict()
