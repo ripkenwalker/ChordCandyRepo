@@ -3,6 +3,6 @@ from pathlib import Path
 
 def getDictPath():
 
-    dictPath = Path.cwd() / 'test_flask_NEW_TEST' / 'Backend_Functions' / 'chordDictionaryNEW.json'
+    dictPath = Path.cwd() / 'Chord_Candy' / 'Backend_Functions' / 'chordDictionaryNEW.json'
 
     return dictPath

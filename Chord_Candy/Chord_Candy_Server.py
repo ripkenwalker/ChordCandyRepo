@@ -34,7 +34,10 @@ def chordsend():
     chordIn4 = request.args.get('chord4')
     
     inputChord = [str(chordIn1), str(chordIn2), str(chordIn3), str(chordIn4)]
-    print(inputChord)
+    print('>>>>', inputChord)
+    print()
+
+
 
     destChords = mainCallMultiple(inputChord)
 
