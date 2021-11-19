@@ -280,18 +280,23 @@ function sendChordResponse(e){
     console.log(JSON.parse(this.response))
     response = JSON.parse(this.response)
     
+    if (response[0][0] == "i"){
+
+    } else {
     // Changes HTML text to match destination result
-    const chordName1 = document.getElementById("chord-disp-1");
-    chordName1.textContent = String(response[0][0]);
+        const chordName1 = document.getElementById("chord-disp-1");
+        chordName1.textContent = String(response[0][0]);
 
-    const chordName2 = document.getElementById("chord-disp-2");
-    chordName2.textContent = String(response[1][0]);
+        const chordName2 = document.getElementById("chord-disp-2");
+                chordName2.textContent = String(response[1][0]);
 
-    const chordName3 = document.getElementById("chord-disp-3");
-    chordName3.textContent = String(response[2][0]);
+        const chordName3 = document.getElementById("chord-disp-3");
+        chordName3.textContent = String(response[2][0]);
 
-    const chordName4 = document.getElementById("chord-disp-4");
-    chordName4.textContent = String(response[3][0]);
+        const chordName4 = document.getElementById("chord-disp-4");
+        chordName4.textContent = String(response[3][0]);
+
+    }
 
 
 
