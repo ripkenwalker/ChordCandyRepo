@@ -1,4 +1,5 @@
 [submodule "Chord_Candy/static/keyboard/Tone.js"]
 	path = Chord_Candy/static/keyboard/Tone.js
 	url = https://github.com/Tonejs/Tone.js
+	ignore = dirty
 	branch = master
