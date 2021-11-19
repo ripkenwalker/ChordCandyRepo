@@ -146,6 +146,7 @@ function setChordString(e) {
         default:
             break
     }
+    getChordsReady()
 }
 // Prepare chords to be sent to the backend
 function getChordsReady() {
@@ -172,7 +173,6 @@ function getChordsReady() {
     
     }
 
-    console.log(chordList)
     sendChord(chordList)
 }
 // Traverse chord dictionary and find all possible chords
@@ -257,10 +257,7 @@ var sendChord = function(inputChordList) {
     xhr.send();
 
     console.log(inputChordList)
-    console.log(chord1)
-    console.log(chord2)
-    console.log(chord3)
-    console.log(chord4)
+
 }
 
 // XML Response Functions
@@ -282,7 +279,22 @@ function getChordDictResponse(e) {
 function sendChordResponse(e){
     console.log(JSON.parse(this.response))
     response = JSON.parse(this.response)
-    // document.getElementById("output").innerHTML = response
+    
+    // Changes HTML text to match destination result
+    const chordName1 = document.getElementById("chord-disp-1");
+    chordName1.textContent = String(response[0][0]);
+
+    const chordName2 = document.getElementById("chord-disp-2");
+    chordName2.textContent = String(response[1][0]);
+
+    const chordName3 = document.getElementById("chord-disp-3");
+    chordName3.textContent = String(response[2][0]);
+
+    const chordName4 = document.getElementById("chord-disp-4");
+    chordName4.textContent = String(response[3][0]);
+
+
+
 }
 
 getChordDict()
