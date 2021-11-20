@@ -8,6 +8,7 @@ body {
 
 .piano {
     display:flex;
+    justify-content: center;
 }
 
 tone-piano {
@@ -15,27 +16,29 @@ tone-piano {
 }
 
 .key{
-    height: calc(var(--width) * 4);
+    height: var(--height);
     width: var(--width);
 }
 
 .white{
-    --width: 67px;
+    --width: 4.7vw;
     background-color: white;
     border: 1px solid rgb(122, 122, 122);
     box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+    --height: 19vw;
 }
 .white.active{
     background-color: rgb(255, 100, 100);
 }
 
 .black{
-    --width: 40.2px;
+    --width: 3.13vw;
     background-color: black;
     border: 1.8px solid black;
     margin-left: calc(var(--width) / -2);
     margin-right: calc(var(--width) / -2);
     z-index: 2;
+    --height: 11.4vw;
 }
 .black.active{
     background-color: rgb(255, 100, 100);
