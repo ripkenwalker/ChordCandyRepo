@@ -78,64 +78,76 @@ function getchord4(chord4) {
 }
 
 var check = new Boolean(false)
+check = !check
 chord1_button.addEventListener('click', e => {
-  check = !check
-  console.log(chord1Val)
   if (check){
     const allnotes = Array.from(Array(36).keys())
     for (let i = 0; i < allnotes.length; i++) {
       dropdownReleaseNote(allnotes[i])
+    }
+    for (let i = 0; i < chord1Val.length; i++) {
+      dropdownPlayNote(chord1Val[i])
     }
   }
   else {
     for (let i = 0; i < chord1Val.length; i++) {
       dropdownPlayNote(chord1Val[i])
     }
+    check = true
   }
 })
 
 chord2_button.addEventListener('click', e => {
-  check = !check
   if (check){
     const allnotes = Array.from(Array(36).keys())
     for (let i = 0; i < allnotes.length; i++) {
       dropdownReleaseNote(allnotes[i])
+    }
+    for (let i = 0; i < chord2Val.length; i++) {
+      dropdownPlayNote(chord2Val[i])
     }
   }
   else {
     for (let i = 0; i < chord2Val.length; i++) {
       dropdownPlayNote(chord2Val[i])
     }
+    check = true
   }
 })
 
 chord3_button.addEventListener('click', e => {
-  check = !check
   if (check){
     const allnotes = Array.from(Array(36).keys())
     for (let i = 0; i < allnotes.length; i++) {
       dropdownReleaseNote(allnotes[i])
+    }
+    for (let i = 0; i < chord3Val.length; i++) {
+      dropdownPlayNote(chord3Val[i])
     }
   }
   else {
     for (let i = 0; i < chord3Val.length; i++) {
       dropdownPlayNote(chord3Val[i])
     }
+    check = true
   }
 })
 
 chord4_button.addEventListener('click', e => {
-  check = !check
   if (check){
     const allnotes = Array.from(Array(36).keys())
     for (let i = 0; i < allnotes.length; i++) {
       dropdownReleaseNote(allnotes[i])
+    }
+    for (let i = 0; i < chord4Val.length; i++) {
+      dropdownPlayNote(chord4Val[i])
     }
   }
   else {
     for (let i = 0; i < chord4Val.length; i++) {
       dropdownPlayNote(chord4Val[i])
     }
+    check = true
   }
 })
 
