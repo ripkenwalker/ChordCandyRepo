@@ -317,4 +317,12 @@ function sendChordResponse(e){
 
 }
 
+function playChords() {
+
+    setTimeout(function(){document.getElementById("chord1").click();}, 0);
+    setTimeout(function(){document.getElementById("chord2").click();}, 1500);
+    setTimeout(function(){document.getElementById("chord3").click();}, 3000);
+    setTimeout(function(){document.getElementById("chord4").click();}, 4500);
+  }
+
 getChordDict()
