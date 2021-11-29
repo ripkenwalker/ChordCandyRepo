@@ -12,29 +12,29 @@ Chord Candy runs on a server hosted locally on your machine. In order for the we
 
 First, in Git Bash or your preferred command line, run:
 
-'''
+```
 git clone --recursive https://ripkenwalker@github.com/ripkenwalker/ChordCandyRepo.git
-'''
+```
 
 which clones the repository on your machine. 
 
 Next, navigate to the Tone.js submodule directory on your machine:
 
-'''
+```
 cd Chord_Candy/static/keyboard/Tone.js
-'''
+```
 
 once the Git Bash working directory ends with Tone.js, run the following commands:
 
-'''
+```
 npm install
-'''
+```
 
 and
 
-'''
+```
 npm run build
-'''
+```
 
 #### npm not found
 
@@ -44,9 +44,9 @@ If npm isn't recognized as a command, install NodeJs here: [https://nodejs.org/e
 Once Tone.js has been configured, the server will display the app using python's Flask web framework. Since you already have Git Bash
 running, navigate back to wherever the /ChordCandyRepo is located on your machine. From there run:
 
-'''
+```
 python Chord_Candy/Chord_Candy_Server.py
-'''
+```
 
 which when operating properly will confirm that the server is running locally on port 8000.
 
