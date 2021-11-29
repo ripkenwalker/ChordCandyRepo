@@ -151,6 +151,23 @@
     <!-- Play Chords Button -->
     <div class="row justify-content-center">
       <button type="button" class="btn btn-primary" onclick="playChords()">Play Chords</button>
+
+      <button type="button" id= "testProg1" class="btn btn-primary" 
+        onclick="sendChord(['C Major Root Position', 'G Major', 'A Minor', 'F Major'])">
+          Test Progression #1 (I-V-vi-IV)</button>
+          
+      <button type="button" id= "testProg2" class="btn btn-primary"
+        onclick="sendChord(['D Min7 Root Position', 'G Dom7', 'C Maj7', 'C Maj7'])">
+          Test Progression #2 (ii-V-I)</button>
+
+      <button type="button" id= "testProg3" class="btn btn-primary"
+        onclick="sendChord(['C Maj7 Root Position', 'A Min7', 'D Min7', 'G Dom7'])">
+          Test Progression #3 (I-vi-ii-V)</button>
+      
+      <button type="button" id= "testProg4" class="btn btn-primary"
+        onclick="sendChord(['C Maj7 Root Position', 'F Dom7', 'E Min7', 'A Dom7'])">
+          Test Progression #4 (I-IV7-iii-VI7)</button>
+
     </div>
     
     <!-- Chord Selection -->
