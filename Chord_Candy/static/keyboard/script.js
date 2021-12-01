@@ -9,8 +9,8 @@ var chordInversion = ""
 
 // Piano Keyboard Properties
 // Store keyboard key names
-const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
-const BLACK_KEYS = ['s', 'd', 'g', 'h', 'j']
+const WHITE_KEYS = ['q','w','e','r','t','y','u','i','o','p','[',']','z', 'x', 'c', 'v', 'b', 'n', 'm',',','.']
+const BLACK_KEYS = ['2','3','5','6','7','9','0','=','a','s','f','g','j','k','l']
 // Tone.js Piano Sampler
 const sampler = new Tone.Sampler({
     urls: {

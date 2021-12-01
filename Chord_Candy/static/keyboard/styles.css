@@ -16,6 +16,20 @@ body {
     width: var(--width);
 }
 
+h3{
+    font-size: 15px;
+    color: rgb(61, 63, 65);
+    margin-top: 200px;
+    text-align: center;
+}
+
+h4{
+    font-size: 15px;
+    color: rgb(213, 220, 226);
+    margin-top: 100px;
+    text-align: center;
+}
+
 .white{
     --width: 4.7vw;
     background-color: white;
