@@ -284,36 +284,41 @@ function getChordDictResponse(e) {
     }
 }
 function sendChordResponse(e){
-    console.log(JSON.parse(this.response))
+    // console.log(this.response)
+    var outTitle = "Inversions: "
+    console.log(outTitle.concat('', JSON.parse(this.response)))
     response = JSON.parse(this.response)
-    
-    if (response[0][0] == "i"){
 
+    if (response[0][0] == undefined){
     } else {
-    // Changes HTML text to match destination result
-        const chordName1 = document.getElementById("chord-disp-1");
-        chordName1.textContent = String(response[0][0]);
+        if (response[0][0] == "i"){
 
-        const chordName2 = document.getElementById("chord-disp-2");
-        chordName2.textContent = String(response[1][0]);
+        } else {
+        // Changes HTML text to match destination result
+            const chordName1 = document.getElementById("chord-disp-1");
+            chordName1.textContent = String(response[0][0]);
 
-        const chordName3 = document.getElementById("chord-disp-3");
-        chordName3.textContent = String(response[2][0]);
+            const chordName2 = document.getElementById("chord-disp-2");
+            chordName2.textContent = String(response[1][0]);
 
-        const chordName4 = document.getElementById("chord-disp-4");
-        chordName4.textContent = String(response[3][0]);
+            const chordName3 = document.getElementById("chord-disp-3");
+            chordName3.textContent = String(response[2][0]);
 
+            const chordName4 = document.getElementById("chord-disp-4");
+            chordName4.textContent = String(response[3][0]);
+
+        }
+
+        // Get Index value and pass each chord variables to dropdown_script.js
+        const chord1 = response[0][2];
+        const chord2 = response[1][2];
+        const chord3 = response[2][2];
+        const chord4 = response[3][2];
+        getchord1(chord1)
+        getchord2(chord2)
+        getchord3(chord3)
+        getchord4(chord4)
     }
-
-    // Get Index value and pass each chord variables to dropdown_script.js
-    const chord1 = response[0][2];
-    const chord2 = response[1][2];
-    const chord3 = response[2][2];
-    const chord4 = response[3][2];
-    getchord1(chord1)
-    getchord2(chord2)
-    getchord3(chord3)
-    getchord4(chord4)
 
 }
 

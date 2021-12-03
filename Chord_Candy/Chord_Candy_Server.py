@@ -21,8 +21,8 @@ def getChordDict():
 @app.route('/<path:filename>')
 def serve_static(filename):
     root_dir = app.root_path
-    print("root ",root_dir,app.root_path,app.instance_path)
-    print(os.path.join(root_dir, 'static\\keyboard\\'), filename)
+    # print("root ",root_dir,app.root_path,app.instance_path)
+    # print(os.path.join(root_dir, 'static\\keyboard\\'), filename)
     return send_from_directory(os.path.join(root_dir, 'static\\keyboard\\'), filename)
 
 @app.route('/chordsend')
@@ -38,10 +38,17 @@ def chordsend():
     print()
 
 
+    try:
+        destChords = mainCallMultiple(inputChord)
+        return jsonify(destChords)
+    except:
+        print("Chords Not Populated")
+        return jsonify([(),(),(),()])
+    
 
-    destChords = mainCallMultiple(inputChord)
 
-    return jsonify(destChords)
+
+    # return jsonify(destChords)
 
 
 

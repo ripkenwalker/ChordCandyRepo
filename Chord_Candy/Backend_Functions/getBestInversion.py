@@ -15,6 +15,7 @@ with open(getDictPath(), 'r') as dictOpen:
 
 def getBestInversion(inChord, destChord):
     if type(inChord) is str:
+        print("INCHORD : {}".inChord)
         r = nested_lookup(inChord, nameToNum)
         try:
             inputNum = r[0]
@@ -82,6 +83,17 @@ def getBestInversion(inChord, destChord):
         num = 0
 
         # Make list of inversions
+        # try:
+        #     w = destNums[0]
+        #     for n in destNums[0]:
+        #         nIndex = num*3
+        #         nameArray[nIndex:(nIndex+3)] = n
+        #     num += 1
+        # except IndexError:
+        #     print("Index Error: Not all chords are populated")
+
+        
+
         for n in destNums[0]:
             nIndex = num*3
             nameArray[nIndex:(nIndex+3)] = n
@@ -113,6 +125,12 @@ def getBestInversion(inChord, destChord):
     destinationName = combArr[minVal][1]
     # Replace dash in dictionary name with more readable "b" 
     destinationName = destinationName.replace("-", "b")
+
+    # try:
+    #     destinationName = destinationName.replace("-", "b")
+    # except AttributeError:
+    #     print("Destination Replacement Error: Not all chords are populated")
+
     # Find chord string of output
     outputCode = int(lookupArray[minVal])
     # Split the output into three separate note values
