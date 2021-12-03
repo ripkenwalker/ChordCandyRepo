@@ -9,6 +9,10 @@ body {
 .piano {
     display:flex;
     justify-content: center;
+    background-color: black;
+    padding: 7px;
+    border-radius: 2px;
+    margin-top: 2px;
 }
 
 .key{
@@ -20,6 +24,7 @@ h3{
     font-size: 15px;
     color: rgb(61, 63, 65);
     margin-top: 200px;
+    margin-bottom: auto;
     text-align: center;
 }
 
@@ -27,31 +32,50 @@ h4{
     font-size: 15px;
     color: rgb(213, 220, 226);
     margin-top: 100px;
+    margin-bottom: auto;
     text-align: center;
 }
 
 .white{
     --width: 4.7vw;
     background-color: white;
-    border: 1px solid rgb(122, 122, 122);
-    box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+    border: 0.5px solid rgb(131, 131, 131);
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    /* box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6); */
+    box-shadow: 0 5px rgb(77, 77, 77);
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
     --height: 19vw;
 }
 .white.active{
     background-color: rgb(255, 100, 100);
+    box-shadow: 0 2px rgb(66, 66, 66);
+    transform: translateY(3px);
 }
 
 .black{
     --width: 3.13vw;
     background-color: black;
-    border: 1.8px solid black;
+    border: 1px solid rgb(65, 65, 65);
+    border-top: none;
+    box-shadow: 0 3px rgb(59, 59, 59);
     margin-left: calc(var(--width) / -2);
     margin-right: calc(var(--width) / -2);
     z-index: 2;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
     --height: 11.4vw;
 }
 .black.active{
     background-color: rgb(255, 100, 100);
+    box-shadow: 0 1px rgb(17, 17, 17);
+    transform: translateZ(2px);
 }
 
 .card {
