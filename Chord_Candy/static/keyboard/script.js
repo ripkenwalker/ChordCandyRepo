@@ -301,6 +301,10 @@ function sendChordResponse(e){
     response = JSON.parse(this.response)
 
     if (response[0][0] == undefined){
+        const chord1 = response[0][2];
+        const chord2 = response[1][2];
+        const chord3 = response[2][2];
+        const chord4 = response[3][2];
     } else {
         if (response[0][0] == "i"){
 
