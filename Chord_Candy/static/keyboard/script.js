@@ -54,6 +54,17 @@ const keys = document.querySelectorAll('.key')
 const whiteKeys = document.querySelectorAll('.key.white')
 const blackKeys = document.querySelectorAll('.key.black')
 
+// Get the toggle switches
+const toggles = document.querySelectorAll(".form-check-input")
+
+// What happens when a switch is clicked
+toggles.forEach(toggle => {
+    toggle.addEventListener('mousedown', () => toggleValue(toggle))
+})
+function toggleValue(toggle) {
+    toggle.value = (toggle.value == 'on') ? 'off' : 'on'
+}
+
 // Piano Keyboard Functions
 // Unfinished code for being able to do a glissando (with the mouse)
 function trackMouse(e) {
@@ -323,11 +334,17 @@ function sendChordResponse(e){
 }
 
 function playChords() {
-
-    setTimeout(function(){document.getElementById("chord1").click();}, 0);
-    setTimeout(function(){document.getElementById("chord2").click();}, 1500);
-    setTimeout(function(){document.getElementById("chord3").click();}, 3000);
-    setTimeout(function(){document.getElementById("chord4").click();}, 4500);
+    const toggles = document.querySelectorAll(".form-check-input")
+    var msTime = 0
+    var i = 1
+    toggles.forEach(toggle => {
+        var chordId = "chord" + parseInt(i)
+        if (toggle.value == 'on') {
+            setTimeout(function(){document.getElementById(chordId).click();}, msTime);
+            msTime += 1500
+        }
+        i += 1
+    })
   }
 
 getChordDict()
