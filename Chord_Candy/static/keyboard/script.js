@@ -295,9 +295,9 @@ function getChordDictResponse(e) {
     }
 }
 function sendChordResponse(e){
-    // console.log(this.response)
-    var outTitle = "Inversions: "
-    console.log(outTitle.concat('', JSON.parse(this.response)))
+    console.log(JSON.parse(this.response))
+    //var outTitle = "Inversions: "
+    //console.log(outTitle.concat('', JSON.parse(this.response)))
     response = JSON.parse(this.response)
 
     if (response[0][0] == undefined){
