@@ -18,7 +18,7 @@ git clone --recursive https://ripkenwalker@github.com/ripkenwalker/ChordCandyRep
 
 which clones the repository on your machine. 
 
-Next, navigate to the Tone.js submodule directory on your machine:
+Next, navigate to the Tone.js submodule directory inside the <code>ChordCandyRepo</code> folder on your machine:
 
 ```
 cd Chord_Candy/static/keyboard/Tone.js
@@ -40,6 +40,10 @@ npm run build
 
 If npm isn't recognized as a command, install NodeJs here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
+#### Last resort
+
+You can download the release [here](https://github.com/ripkenwalker/ChordCandyRepo/releases/tag/v1.0.0) with <code>Tone.js</code> pre-built
+
 ## Running the Chord Candy application
 Once Tone.js has been configured, the server will display the app using python's Flask web framework. Since you already have Git Bash
 running, navigate back to wherever the /ChordCandyRepo is located on your machine. From there run:
@@ -52,6 +56,6 @@ which when operating properly will confirm that the server is running locally on
 
 Finally, in google chrome, navigate to:
 
- http://127.0.0.1:8000/ChordCandy.html
+ http://127.0.0.1:8000/static/keyboard/ChordCandy.html
 
 Enjoy running Chord Candy on your machine, and press Ctrl+C within Git Bash to exit the server.
